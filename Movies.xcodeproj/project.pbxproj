@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3552D6841EB5119C002E5293 /* SearchMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552D6831EB5119C002E5293 /* SearchMovieView.swift */; };
+		3552D6861EB51212002E5293 /* SearchMovieView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3552D6851EB51212002E5293 /* SearchMovieView.xib */; };
+		3552D68C1EB53CA4002E5293 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552D68B1EB53CA4002E5293 /* Movie.swift */; };
+		3552D68E1EB57A92002E5293 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3552D68D1EB57A92002E5293 /* Colors.swift */; };
 		35D372901EB507F100507C66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D3728F1EB507F100507C66 /* AppDelegate.swift */; };
-		35D372921EB507F100507C66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D372911EB507F100507C66 /* ViewController.swift */; };
+		35D372921EB507F100507C66 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D372911EB507F100507C66 /* SearchViewController.swift */; };
 		35D372951EB507F100507C66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35D372931EB507F100507C66 /* Main.storyboard */; };
 		35D372971EB507F100507C66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35D372961EB507F100507C66 /* Assets.xcassets */; };
 		35D3729A1EB507F100507C66 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35D372981EB507F100507C66 /* LaunchScreen.storyboard */; };
@@ -34,9 +38,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3552D6831EB5119C002E5293 /* SearchMovieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchMovieView.swift; sourceTree = "<group>"; };
+		3552D6851EB51212002E5293 /* SearchMovieView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchMovieView.xib; sourceTree = "<group>"; };
+		3552D68B1EB53CA4002E5293 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		3552D68D1EB57A92002E5293 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		35D3728C1EB507F100507C66 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		35D3728F1EB507F100507C66 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		35D372911EB507F100507C66 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		35D372911EB507F100507C66 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		35D372941EB507F100507C66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		35D372961EB507F100507C66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35D372991EB507F100507C66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -74,6 +82,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3552D68A1EB53A0E002E5293 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				35D3728F1EB507F100507C66 /* AppDelegate.swift */,
+				35D372961EB507F100507C66 /* Assets.xcassets */,
+				35D372981EB507F100507C66 /* LaunchScreen.storyboard */,
+				35D3729B1EB507F100507C66 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		35D372831EB507F100507C66 = {
 			isa = PBXGroup;
 			children = (
@@ -97,12 +116,13 @@
 		35D3728E1EB507F100507C66 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
-				35D3728F1EB507F100507C66 /* AppDelegate.swift */,
-				35D372911EB507F100507C66 /* ViewController.swift */,
+				3552D68A1EB53A0E002E5293 /* Supporting Files */,
+				35D372911EB507F100507C66 /* SearchViewController.swift */,
+				3552D6831EB5119C002E5293 /* SearchMovieView.swift */,
+				3552D68B1EB53CA4002E5293 /* Movie.swift */,
+				3552D68D1EB57A92002E5293 /* Colors.swift */,
+				3552D6851EB51212002E5293 /* SearchMovieView.xib */,
 				35D372931EB507F100507C66 /* Main.storyboard */,
-				35D372961EB507F100507C66 /* Assets.xcassets */,
-				35D372981EB507F100507C66 /* LaunchScreen.storyboard */,
-				35D3729B1EB507F100507C66 /* Info.plist */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -233,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				35D3729A1EB507F100507C66 /* LaunchScreen.storyboard in Resources */,
+				3552D6861EB51212002E5293 /* SearchMovieView.xib in Resources */,
 				35D372971EB507F100507C66 /* Assets.xcassets in Resources */,
 				35D372951EB507F100507C66 /* Main.storyboard in Resources */,
 			);
@@ -259,8 +280,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35D372921EB507F100507C66 /* ViewController.swift in Sources */,
+				35D372921EB507F100507C66 /* SearchViewController.swift in Sources */,
+				3552D68E1EB57A92002E5293 /* Colors.swift in Sources */,
 				35D372901EB507F100507C66 /* AppDelegate.swift in Sources */,
+				3552D68C1EB53CA4002E5293 /* Movie.swift in Sources */,
+				3552D6841EB5119C002E5293 /* SearchMovieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,6 +531,7 @@
 				35D372B61EB507F100507C66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		35D372B71EB507F100507C66 /* Build configuration list for PBXNativeTarget "MoviesTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +540,7 @@
 				35D372B91EB507F100507C66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		35D372BA1EB507F100507C66 /* Build configuration list for PBXNativeTarget "MoviesUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +549,7 @@
 				35D372BC1EB507F100507C66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
