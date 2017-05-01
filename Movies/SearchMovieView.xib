@@ -1,76 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchMovieView" customModule="Movies" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchMovieView" customModule="Muuvi" customModuleProvider="target">
             <connections>
-                <outlet property="movieInputField" destination="XdB-Kq-aFl" id="93d-1b-RQt"/>
                 <outlet property="searchButton" destination="dOf-17-aMr" id="9cs-uk-k87"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Good Will Hunting" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XdB-Kq-aFl">
-                    <rect key="frame" x="125" y="281" width="164" height="30"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="164" id="NSV-HL-mIY"/>
-                    </constraints>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="q9S-mI-zwZ">
-                    <rect key="frame" x="142.66666666666669" y="46" width="129.00000000000006" height="129"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="129" id="fAo-6V-nMD"/>
-                        <constraint firstAttribute="height" constant="129" id="wOd-Af-vcD"/>
-                    </constraints>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Muuvi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fs-bD-WYO">
-                    <rect key="frame" x="172.66666666666666" y="198" width="69" height="33"/>
+                    <rect key="frame" x="153" y="228" width="69" height="33"/>
                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="24"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOf-17-aMr">
-                    <rect key="frame" x="125" y="385" width="164" height="36"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="q9S-mI-zwZ">
+                    <rect key="frame" x="87.5" y="20" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="q9S-mI-zwZ" secondAttribute="height" multiplier="1:1" id="McX-ds-e7U"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="255" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dOf-17-aMr">
+                    <rect key="frame" x="112" y="355" width="150" height="30"/>
                     <color key="backgroundColor" red="0.40000000600000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="164" id="2ja-uH-dBU"/>
+                        <constraint firstAttribute="height" constant="30" id="S6N-Wn-wx0"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                    <state key="normal" title="Search">
+                    <state key="normal" title="Continue">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="searchPressed:" destination="-1" eventType="touchUpInside" id="Jti-Au-ORN"/>
+                        <action selector="continuePressed:" destination="-1" eventType="touchUpInside" id="riW-YY-QZS"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
             <constraints>
-                <constraint firstItem="2fs-bD-WYO" firstAttribute="top" secondItem="q9S-mI-zwZ" secondAttribute="bottom" constant="23" id="0Jv-Dr-JqD"/>
-                <constraint firstItem="q9S-mI-zwZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="46" id="Nsf-BG-2wQ"/>
-                <constraint firstItem="2fs-bD-WYO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="T2k-4n-eaa"/>
-                <constraint firstItem="XdB-Kq-aFl" firstAttribute="top" secondItem="2fs-bD-WYO" secondAttribute="bottom" constant="50" id="WGu-yr-Prh"/>
-                <constraint firstItem="q9S-mI-zwZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="jQP-hH-RxQ"/>
-                <constraint firstItem="dOf-17-aMr" firstAttribute="top" secondItem="XdB-Kq-aFl" secondAttribute="bottom" constant="74" id="lgi-uy-Ddt"/>
-                <constraint firstItem="dOf-17-aMr" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="oeU-Xf-jb7"/>
-                <constraint firstItem="XdB-Kq-aFl" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wL5-Yr-ZU5"/>
+                <constraint firstItem="q9S-mI-zwZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="3nP-Dh-tF4"/>
+                <constraint firstItem="2fs-bD-WYO" firstAttribute="top" secondItem="q9S-mI-zwZ" secondAttribute="bottom" constant="8" id="72E-8e-gJh"/>
+                <constraint firstItem="dOf-17-aMr" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="9qC-Hu-fH1"/>
+                <constraint firstItem="q9S-mI-zwZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="VNP-Y3-mc5"/>
+                <constraint firstItem="2fs-bD-WYO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bt6-yh-R4L"/>
+                <constraint firstItem="dOf-17-aMr" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.4" id="cBw-mQ-xr1"/>
+                <constraint firstItem="q9S-mI-zwZ" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.3" id="fee-bM-u49"/>
+                <constraint firstItem="dOf-17-aMr" firstAttribute="top" secondItem="2fs-bD-WYO" secondAttribute="bottom" constant="94" id="tsZ-K1-VUN"/>
             </constraints>
-            <point key="canvasLocation" x="34.5" y="53.5"/>
+            <point key="canvasLocation" x="33.5" y="52.5"/>
         </view>
     </objects>
     <resources>

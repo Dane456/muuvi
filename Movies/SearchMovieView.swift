@@ -14,22 +14,22 @@ class SearchMovieView: UIView {
     var searchView: UIView!
     var delegate: SearchMovieDelegate?
     
-    @IBOutlet weak var movieInputField: UITextField! {
-        didSet {
-            // Create a bottom border
-            let border = CALayer()
-            border.borderColor = UIColor.white.cgColor
-            border.frame = CGRect(x: 0, y: movieInputField.bounds.size.height - 1.0,
-                                  width: movieInputField.bounds.size.width, height: movieInputField.bounds.size.height)
-            border.borderWidth = 1.0
-            movieInputField.layer.addSublayer(border)
-            movieInputField.layer.masksToBounds = true
-            
-            let placeholder = NSAttributedString(string: "Search for a movie here...",
-                                                 attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
-            movieInputField.attributedPlaceholder = placeholder
-        }
-    }
+//    @IBOutlet weak var movieInputField: UITextField! {
+//        didSet {
+//            // Create a bottom border
+//            let border = CALayer()
+//            border.borderColor = UIColor.white.cgColor
+//            border.frame = CGRect(x: 0, y: movieInputField.bounds.size.height - 1.0,
+//                                  width: movieInputField.bounds.size.width, height: movieInputField.bounds.size.height)
+//            border.borderWidth = 1.0
+//            movieInputField.layer.addSublayer(border)
+//            movieInputField.layer.masksToBounds = true
+//            
+//            let placeholder = NSAttributedString(string: "Search for a movie here...",
+//                                                 attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
+//            movieInputField.attributedPlaceholder = placeholder
+//        }
+//    }
     @IBOutlet weak var searchButton: UIButton! {
         didSet {
             searchButton.layer.borderWidth = 1.0
@@ -38,14 +38,9 @@ class SearchMovieView: UIView {
             searchButton.clipsToBounds = true
         }
     }
-    
-    @IBAction func searchPressed(_ sender: UIButton) {
+    @IBAction func continuePressed(_ sender: Any) {
         if let delegate = self.delegate {
-            if let searchText = movieInputField.text {
-                delegate.searchForMovie(withTitle: searchText)
-            } else {
-                delegate.displayError()
-            }
+            delegate.nextScreen()
         }
     }
     
