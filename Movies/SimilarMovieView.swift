@@ -43,7 +43,6 @@ class SimilarMovieView: UIView {
     
     func setup(withMovie movie: Movie) {
         titleLabel.text = movie.title
-//        titleLabel.text = "TESTING"
         if let cachedImage = Store.imageCache.object(forKey: movie.posterPath as AnyObject) as? UIImage {
             self.posterView.image = cachedImage
         } else {

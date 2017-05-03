@@ -15,7 +15,6 @@ class DetailView: UIView, UIScrollViewDelegate {
     let SIMILARMOVIEHEIGHTWIDTHRATIO:CGFloat = 1.778
     
     @IBOutlet weak var similarMoviesScrollView: UIScrollView!
-    @IBOutlet weak var scrollContentView: UIView!
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var budgetLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
@@ -68,7 +67,7 @@ class DetailView: UIView, UIScrollViewDelegate {
                 }
                 return ""
             })
-            companiesLabel.text = "Production Companies: \(companies.joined(separator: ", ")))"
+            companiesLabel.text = "Production Companies: \(companies.joined(separator: ", "))"
         } else {
             companiesLabel.text = "Production Companies: N/A"
         }

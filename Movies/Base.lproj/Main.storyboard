@@ -171,13 +171,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LfT-TP-pNX" customClass="DetailView" customModule="Muuvi" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LfT-TP-pNX" customClass="DetailView" customModule="Muuvi" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LfT-TP-pNX" firstAttribute="top" secondItem="s4U-LC-T8x" secondAttribute="bottom" id="3bZ-bg-DZk"/>
+                            <constraint firstItem="LfT-TP-pNX" firstAttribute="leading" secondItem="xX3-OG-tSu" secondAttribute="leading" id="KyZ-Fl-7xI"/>
+                            <constraint firstItem="qyT-L7-b9t" firstAttribute="top" secondItem="LfT-TP-pNX" secondAttribute="bottom" id="ezz-am-GSB"/>
+                            <constraint firstAttribute="trailing" secondItem="LfT-TP-pNX" secondAttribute="trailing" id="hCF-nc-WGM"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="detailView" destination="LfT-TP-pNX" id="3Qz-Hj-kOM"/>

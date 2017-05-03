@@ -9,13 +9,13 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-    var movie: Movie!
     
     @IBOutlet weak var detailView: DetailView! 
+    var movie: Movie!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
         Movie.getDetails(forMovie: movie) { [weak self] (details) in
             DispatchQueue.main.async {
                 self?.detailView.setup(withDetails: details, movie: self!.movie)
