@@ -16,6 +16,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = movie.title
+        
         Movie.getDetails(forMovie: movie) { [weak self] (details) in
             DispatchQueue.main.async {
                 self?.detailView.setup(withDetails: details, movie: self!.movie)
