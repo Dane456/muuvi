@@ -11,16 +11,24 @@ import UIKit
 class DetailViewController: UIViewController {
     var movie: Movie!
     
+    @IBOutlet weak var detailView: DetailView! 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        Movie.getDetails(forMovie: movie) { [weak self] (details) in
+            DispatchQueue.main.async {
+                self?.detailView.setup(withDetails: details, movie: self!.movie)
+            }
+        }
+        
+        Movie.findMovies(withTitle: nil, forMovie: movie, page: 1) { [weak self] (movies) in
+            DispatchQueue.main.async {
+                self?.detailView.setup(withSimilarMovies: movies)
+            }
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     class func getEntrySegueIdentifier() -> String {
        return "detailSegue"
     }

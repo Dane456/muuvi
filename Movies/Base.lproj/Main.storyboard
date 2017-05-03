@@ -23,7 +23,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RPK-yp-FHG" customClass="SearchMovieView" customModule="Muuvi" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RPK-yp-FHG" customClass="LoginView" customModule="Muuvi" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -38,7 +38,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="WoX-ti-Rg1"/>
                     <connections>
-                        <outlet property="searchView" destination="RPK-yp-FHG" id="de3-sf-y38"/>
+                        <outlet property="loginView" destination="RPK-yp-FHG" id="aQC-2Z-jMW"/>
                         <segue destination="5jE-5X-jQj" kind="show" identifier="login" id="sih-Vh-Aie"/>
                     </connections>
                 </viewController>
@@ -70,17 +70,12 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Evf-u3-3Ib">
                                             <rect key="frame" x="8" y="8" width="359" height="133.5"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="q31-3Q-15C">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bdg-sd-swa">
                                                     <rect key="frame" x="0.0" y="0.0" width="91" height="133.5"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bdg-sd-swa">
-                                                            <rect key="frame" x="0.0" y="0.0" width="91" height="133.5"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="Bdg-sd-swa" secondAttribute="height" multiplier="27:40" constant="1" id="Scu-Pw-Nfu"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                    </subviews>
-                                                </stackView>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Bdg-sd-swa" secondAttribute="height" multiplier="27:40" constant="1" id="Scu-Pw-Nfu"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="250" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wH2-kj-Tj1">
                                                     <rect key="frame" x="101" y="0.0" width="258" height="133.5"/>
                                                     <subviews>
@@ -157,17 +152,17 @@
                     </tableView>
                     <connections>
                         <outlet property="searchTextField" destination="zS0-cs-IlS" id="0mH-Pa-zjT"/>
-                        <segue destination="3Hm-Kr-R8V" kind="show" identifier="detailView" id="WgK-rt-edk"/>
+                        <segue destination="3Hm-Kr-R8V" kind="show" identifier="detailSegue" id="WgK-rt-edk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mL4-eI-eRD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1839.2" y="36.431784107946029"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="wXl-ZP-zhs">
             <objects>
-                <viewController id="3Hm-Kr-R8V" sceneMemberID="viewController">
+                <viewController id="3Hm-Kr-R8V" customClass="DetailViewController" customModule="Muuvi" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s4U-LC-T8x"/>
                         <viewControllerLayoutGuide type="bottom" id="qyT-L7-b9t"/>
@@ -175,12 +170,22 @@
                     <view key="view" contentMode="scaleToFill" id="xX3-OG-tSu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LfT-TP-pNX" customClass="DetailView" customModule="Muuvi" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="detailView" destination="LfT-TP-pNX" id="3Qz-Hj-kOM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceB-nJ-s6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2635" y="35"/>
+            <point key="canvasLocation" x="2634.4000000000001" y="34.632683658170919"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hXD-j8-igF">
@@ -198,7 +203,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uur-ta-VTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
+            <point key="canvasLocation" x="-68" y="37"/>
         </scene>
     </scenes>
 </document>

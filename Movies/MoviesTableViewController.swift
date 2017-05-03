@@ -10,6 +10,8 @@ import UIKit
 
 class MoviesTableViewController: UITableViewController, UISearchBarDelegate {
     
+    let LAZYLOADBUFFER = 5
+    
     @IBOutlet weak var searchTextField: UISearchBar! {
         didSet {
             searchTextField.delegate = self
@@ -27,8 +29,10 @@ class MoviesTableViewController: UITableViewController, UISearchBarDelegate {
             tableView.reloadData()
         }
     }
+    
     var searchText: String? {
         didSet {
+            Movie.pages = 1
             movies.removeAll()
             searchForMovies()
         }
@@ -36,32 +40,30 @@ class MoviesTableViewController: UITableViewController, UISearchBarDelegate {
     
     private func searchForMovies() {
         if let query = searchText, !query.isEmpty {
-            self.title = query
+            self.title = "Search results for \(query)"
             tableView.separatorStyle = .none
-            Movie.findMovies(withTitle: query, page: 1) { (movies) in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            Movie.findMovies(withTitle: query, forMovie: nil, page: 1) { (movies) in
                 if movies.count == 0 {
                     let alert = UIAlertController(title: "Oops", message: "No results returned, try again", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
                 DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     self.movies = movies
                     self.tableView.backgroundView = nil
                 }
             }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchTextField.becomeFirstResponder()
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -69,6 +71,11 @@ class MoviesTableViewController: UITableViewController, UISearchBarDelegate {
             tableView.separatorStyle = .singleLine
             return 1
         }
+        let label = UILabel(frame: view.frame)
+        label.text = "Enter search query above"
+        label.textColor = .darkGray
+        label.textAlignment = .center
+        tableView.backgroundView = label
         tableView.separatorStyle = .none
         return 0
     }
@@ -76,17 +83,32 @@ class MoviesTableViewController: UITableViewController, UISearchBarDelegate {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "movieTableCell", for: indexPath) as! MovieTableViewCell
 
         // Configure the cell...
         cell.setup(withMovie: movies[indexPath.row])
+        
+        if (indexPath.row + LAZYLOADBUFFER >= movies.count) {
+            fetchMoreMovies()
+        }
 
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func fetchMoreMovies() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        Movie.pages += 1
+        Movie.findMovies(withTitle: searchText!, forMovie: nil, page: Movie.pages) {[weak self] (movies) in
+            DispatchQueue.main.async {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                self?.movies.append(contentsOf: movies)
+            }
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: DetailViewController.getEntrySegueIdentifier(), sender: movies[indexPath.row])
     }
     
@@ -101,5 +123,4 @@ class MoviesTableViewController: UITableViewController, UISearchBarDelegate {
             }
         }
     }
-
 }

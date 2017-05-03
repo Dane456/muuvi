@@ -24,24 +24,19 @@ class MovieTableViewCell: UITableViewCell {
         if movie.numVotes == 1 {
             voteStr = " vote"
         }
-        numVotes.text = voteStr
+        numVotes.text = "\(movie.numVotes)\(voteStr)"
         dateCreated.text = movie.releaseDate?.description
         overview.text = movie.desc
-        let indicator = UIActivityIndicatorView(frame: posterView.frame)
-        posterView.addSubview(indicator)
-        indicator.startAnimating()
-        
-        DispatchQueue.global(qos: .userInitiated).async {
-            if let posterImage = try? UIImage(data: Data(contentsOf: movie.posterPath)) {
-                DispatchQueue.main.async {
-                    self.posterView.image = posterImage
-                    indicator.stopAnimating()
-                }
-            } else {
-                print("Poster with url \(movie.posterPath) could not be fetched")
-                
+        if let cachedImage = Store.imageCache.object(forKey: movie.posterPath as AnyObject) as? UIImage {
+            self.posterView.image = cachedImage
+        } else {
+            let indicator = UIActivityIndicatorView(frame: posterView.frame)
+            posterView.addSubview(indicator)
+            indicator.startAnimating()
+            Utils.loadImage(forView: posterView, path: movie.posterPath) {(posterImageView) in
+                self.posterView = posterImageView
+                indicator.stopAnimating()
             }
         }
     }
-    
 }

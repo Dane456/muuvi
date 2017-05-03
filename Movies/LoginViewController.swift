@@ -7,31 +7,25 @@
 //
 
 import UIKit
-protocol SearchMovieDelegate: class {
+protocol LoginDelegate: class {
     func nextScreen()
 }
 
-class LoginViewController: UIViewController, SearchMovieDelegate {
+class LoginViewController: UIViewController, LoginDelegate {
     
-    @IBOutlet weak var searchView: SearchMovieView! {
+    @IBOutlet weak var loginView: LoginView! {
         didSet {
-            searchView.delegate = self
+            loginView.delegate = self
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     func nextScreen() {
          self.performSegue(withIdentifier: MoviesTableViewController.getEntrySegueIdentifier(), sender: nil)
     }
-//    
-//    func displayError() {
-//        let alert = UIAlertController(title: "Oops", message: "Please input a movie to search!", preferredStyle: .alert)
-//        alert.addAction(UIAlertAction(title: "Got it", style: .cancel, handler: nil))
-//        self.present(alert, animated: true, completion: nil)
-//    }
 }
 

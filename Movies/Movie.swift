@@ -10,9 +10,10 @@ import Foundation
 
 struct Movie {
     
-    private static let urlComponents = URLComponents(string: "https://api.themoviedb.org")!
-    private static let imageUrlComponents = URLComponents(string: "https://image.tmdb.org")!
-    private static let session = URLSession(configuration: .default)
+    static let urlComponents = URLComponents(string: "https://api.themoviedb.org")!
+    static let imageUrlComponents = URLComponents(string: "https://image.tmdb.org")!
+    static let session = URLSession(configuration: .default)
+    static var pages = 1
     
     let id: Int
     let title:String
@@ -23,8 +24,7 @@ struct Movie {
     let releaseDate: String?
     
     init?(json: [String: Any]) {
-        guard let apiKey = ProcessInfo.processInfo.environment["apiKey"],
-            let id = json["id"] as? Int,
+        guard let id = json["id"] as? Int,
             let title = json["title"] as? String,
             let desc = json["overview"] as? String,
             let posterPath = json["poster_path"] as? String,
@@ -40,6 +40,7 @@ struct Movie {
         var url = Movie.imageUrlComponents
         url.path = "/t/p/w300\(posterPath)"
         self.posterPath = url.url!
+        
         self.voteAverage = voteAverage
         self.numVotes = numVotes
         let dateFormatter = DateFormatter()
@@ -49,42 +50,6 @@ struct Movie {
             self.releaseDate = dateFormatter.string(from: date)
         } else {
             self.releaseDate = nil
-        }
-    }
-    
-    static func findMovies(withTitle title: String, page: Int?, completion:  @escaping ([Movie]) -> Void) {
-        if let apiKey = ProcessInfo.processInfo.environment["apiKey"] {
-            var searchUrlComponents = Movie.urlComponents
-            searchUrlComponents.path = "/3/search/movie"
-            let pageNum = page ?? 1
-            searchUrlComponents.queryItems = [URLQueryItem(name: "api_key", value: apiKey),
-                                              URLQueryItem(name: "query", value: title),
-                                              URLQueryItem(name: "language", value: "en-US"),
-                                              URLQueryItem(name: "include_adult", value: "true"),
-                                              URLQueryItem(name: "page", value: "\(pageNum)")]
-            let url = searchUrlComponents.url!
-            Movie.session.dataTask(with: url, completionHandler: { (data, response, error) in
-                var movies:[Movie] = []
- 
-                if let data = data {
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                        let results = json?["results"] as! [[String: Any]]
-                        for result in results {
-                            if let movie = Movie(json: result) {
-                                movies.append(movie)
-                            }
-                        }
-                    } catch let error {
-                        print("Serialization error: \(error) ")
-                    }
-                } else if let error = error {
-                    print("Request Error: \(error.localizedDescription)")
-                }
-                completion(movies)
-            }).resume()
-        } else {
-            print("no api key present")
         }
     }
 }
