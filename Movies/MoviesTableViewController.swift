@@ -44,16 +44,23 @@ class MoviesTableViewController: UITableViewController, UISearchBarDelegate {
             tableView.separatorStyle = .none
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             Movie.findMovies(withTitle: query, forMovie: nil, page: 1) { (movies) in
-                if movies.count == 0 {
+                if let movies = movies {
+                    if movies.count == 0 {
                     let alert = UIAlertController(title: "Oops", message: "No results returned, try again", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    DispatchQueue.main.async {
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        self.movies = movies
+                        self.tableView.backgroundView = nil
+                    }
+                } else {
+                    let alert = UIAlertController(title: "Oops", message: "No API Key Present, add it to the env variables", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
-                DispatchQueue.main.async {
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                    self.movies = movies
-                    self.tableView.backgroundView = nil
-                }
+                
             }
         }
     }
@@ -69,9 +76,11 @@ class MoviesTableViewController: UITableViewController, UISearchBarDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         Movie.pages += 1
         Movie.findMovies(withTitle: searchText!, forMovie: nil, page: Movie.pages) {[weak self] (movies) in
-            DispatchQueue.main.async {
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                self?.movies.append(contentsOf: movies)
+            if let movies = movies {
+                DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    self?.movies.append(contentsOf: movies)
+                }
             }
         }
     }

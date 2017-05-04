@@ -21,12 +21,15 @@ class DetailViewController: UIViewController {
         Movie.getDetails(forMovie: movie) { [weak self] (details) in
             DispatchQueue.main.async {
                 self?.detailView.setup(withDetails: details, movie: self!.movie)
+                
             }
         }
         
         Movie.findMovies(withTitle: nil, forMovie: movie, page: 1) { [weak self] (movies) in
             DispatchQueue.main.async {
-                self?.detailView.setup(withSimilarMovies: movies)
+                if let movies = movies {
+                    self?.detailView.setup(withSimilarMovies: movies)
+                } 
             }
         }
     }

@@ -10,7 +10,7 @@ import Foundation
 
 extension Movie {
     
-    static func findMovies(withTitle title: String?, forMovie movie: Movie?, page: Int?, completion:  @escaping ([Movie]) -> Void) {
+    static func findMovies(withTitle title: String?, forMovie movie: Movie?, page: Int?, completion:  @escaping ([Movie]?) -> Void) {
         if let apiKey = ProcessInfo.processInfo.environment["apiKey"] {
             var searchUrlComponents = Movie.urlComponents
             var queryItems = [URLQueryItem]()
@@ -50,6 +50,7 @@ extension Movie {
                 completion(movies)
             }).resume()
         } else {
+            completion(nil)
             print("no api key present")
         }
     }
