@@ -27,6 +27,9 @@ class MovieTableViewCell: UITableViewCell {
         numVotes.text = "\(movie.numVotes)\(voteStr)"
         dateCreated.text = movie.releaseDate?.description
         overview.text = movie.desc
+        if posterView != nil {
+            posterView.image = UIImage(named: "search")
+        }
         if let cachedImage = Store.imageCache.object(forKey: movie.posterPath as AnyObject) as? UIImage {
             self.posterView.image = cachedImage
         } else {

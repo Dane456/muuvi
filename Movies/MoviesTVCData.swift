@@ -32,7 +32,9 @@ extension MoviesTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "movieTableCell", for: indexPath) as! MovieTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "movieTableCell", for: indexPath) as? MovieTableViewCell else {
+             fatalError("The dequeued cell is not an instance of MovieTableCell.")
+        }
         
         // Configure the cell...
         cell.setup(withMovie: movies[indexPath.row])

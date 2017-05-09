@@ -35,10 +35,11 @@ extension Movie {
                 if let data = data {
                     do {
                         let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                        let results = json?["results"] as! [[String: Any]]
-                        for result in results {
-                            if let movie = Movie(json: result) {
-                                movies.append(movie)
+                        if let results = json?["results"] as? [[String: Any]] {
+                            for result in results {
+                                if let movie = Movie(json: result) {
+                                    movies.append(movie)
+                                }
                             }
                         }
                     } catch let error {
